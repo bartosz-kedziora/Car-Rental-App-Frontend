@@ -1,5 +1,6 @@
 package com.kodilla.carrental.client;
 
+import com.kodilla.carrental.config.BackendConfiguration;
 import com.kodilla.carrental.domain.CarDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -19,11 +20,13 @@ public class CarClient {
 
     @Autowired
     private RestTemplate restTemplate;
-    private final String endpoint = "http://localhost:8080/v1/cars";
+
+    @Autowired
+    private BackendConfiguration backendConfiguration;
 
     public List<CarDto> getCars() {
         try {
-            URI url = UriComponentsBuilder.fromHttpUrl(endpoint).build().encode().toUri();
+            URI url = UriComponentsBuilder.fromHttpUrl(backendConfiguration.getCarEndpoint()).build().encode().toUri();
             CarDto[] response = restTemplate.getForObject(url, CarDto[].class);
             return Arrays.asList(ofNullable(response).orElse(new CarDto[0]));
 
