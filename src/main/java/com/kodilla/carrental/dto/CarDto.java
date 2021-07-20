@@ -1,14 +1,13 @@
-package com.kodilla.carrental.domain;
+package com.kodilla.carrental.dto;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-
+import com.kodilla.carrental.domain.Status;
+import lombok.*;
 import java.math.BigDecimal;
 
 @Data
 @Builder
 @AllArgsConstructor
+@NoArgsConstructor
 public class CarDto
 {
     private Long id;
@@ -18,8 +17,9 @@ public class CarDto
     private int productionYear;
     private String fuelType;
     private double engineCapacity;
-    private String bodyClass;
+    private String bodyStyle;
     private int mileage;
     private BigDecimal costPerDay;
     private Status status;
+
 }
