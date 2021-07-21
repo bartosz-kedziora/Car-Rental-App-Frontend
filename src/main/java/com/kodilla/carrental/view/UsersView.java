@@ -13,7 +13,6 @@ import com.vaadin.flow.data.binder.Binder;
 import com.vaadin.flow.spring.annotation.UIScope;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-
 import java.util.List;
 
 @UIScope
@@ -22,14 +21,14 @@ public class UsersView extends VerticalLayout {
 
     private final Grid<UserDto> userGrid = new Grid<>();
     private final UserClient userClient;
-    private Dialog dialog = new Dialog();
-    private Binder<UserDto> binder = new Binder<>();
-    private TextField name = new TextField("Name");
-    private TextField lastName = new TextField("Last name");
-    private TextField email = new TextField("Email address");
-    private TextField password = new TextField("Password");
-    private IntegerField phoneNumber = new IntegerField("Phone number");
-    private UserDto userDto = new UserDto();
+    private final Dialog dialog = new Dialog();
+    private final Binder<UserDto> binder = new Binder<>();
+    private final TextField name = new TextField("Name");
+    private final TextField lastName = new TextField("Last name");
+    private final TextField email = new TextField("Email address");
+    private final TextField password = new TextField("Password");
+    private final IntegerField phoneNumber = new IntegerField("Phone number");
+    private final UserDto userDto = new UserDto();
 
     @Autowired
     public UsersView(UserClient userClient) {
@@ -91,16 +90,6 @@ public class UsersView extends VerticalLayout {
         VerticalLayout alertLayout = new VerticalLayout();
         Button cancelAlertButton = new Button("Cancel", event -> alertDialog.close());
         Label alertLabel = new Label("All fields must be filled!");
-        alertLayout.add(alertLabel, cancelAlertButton);
-        alertDialog.add(alertLayout);
-        return alertDialog;
-    }
-
-    private Dialog createUserAlreadyRegisteredDialog() {
-        Dialog alertDialog = new Dialog();
-        VerticalLayout alertLayout = new VerticalLayout();
-        Button cancelAlertButton = new Button("Cancel", event -> alertDialog.close());
-        Label alertLabel = new Label("User is already registered!");
         alertLayout.add(alertLabel, cancelAlertButton);
         alertDialog.add(alertLayout);
         return alertDialog;

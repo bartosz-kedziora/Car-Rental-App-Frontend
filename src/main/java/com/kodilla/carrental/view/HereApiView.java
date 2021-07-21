@@ -11,7 +11,6 @@ import com.vaadin.flow.data.binder.Binder;
 import com.vaadin.flow.spring.annotation.UIScope;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -23,11 +22,11 @@ public class HereApiView extends VerticalLayout {
     private final Grid<CarAgencyComplexDto> grid = new Grid<>();
     private final HereApiClient hereApiClient;
 
-    private Dialog dialog = new Dialog();
+    private final Dialog dialog = new Dialog();
     private CoordinatesDto coordinatesDto = new CoordinatesDto();
-    private ZipCodeDto zipCodeDto = new ZipCodeDto();
-    private Binder<ZipCodeDto> codeBinder = new Binder<>();
-    private TextField zipCode = new TextField("Enter Your zip-code below:");
+    private final ZipCodeDto zipCodeDto = new ZipCodeDto();
+    private final Binder<ZipCodeDto> codeBinder = new Binder<>();
+    private final TextField zipCode = new TextField("Enter Your zip-code below:");
 
     @Autowired
     public HereApiView(HereApiClient hereApiClient) {

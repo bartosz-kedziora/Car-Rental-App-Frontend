@@ -9,12 +9,10 @@ import com.vaadin.flow.component.dialog.Dialog;
 import com.vaadin.flow.component.grid.Grid;
 import com.vaadin.flow.component.html.Label;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
-import com.vaadin.flow.component.textfield.IntegerField;
 import com.vaadin.flow.data.binder.Binder;
 import com.vaadin.flow.spring.annotation.UIScope;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-
 import java.util.List;
 
 @UIScope
@@ -24,13 +22,11 @@ public class RentalsView extends VerticalLayout {
     private final Grid<RentalDto> rentalGrid = new Grid<>();
     private final RentalClient rentalClient;
 
-    private Dialog extendRentalDialog = new Dialog();
-    //private Binder<RentalExtensionDto> binderForExtendRental = new Binder<>();
-
-    private Dialog modifyRentalDialog = new Dialog();
-    private Binder<RentalDto> binderForModifyRental = new Binder<>();
-    private DatePicker modifyStartDate = new DatePicker("Rented from");
-    private DatePicker modifyEndDate = new DatePicker("Rented to");
+    private final Dialog extendRentalDialog = new Dialog();
+    private final Dialog modifyRentalDialog = new Dialog();
+    private final Binder<RentalDto> binderForModifyRental = new Binder<>();
+    private final DatePicker modifyStartDate = new DatePicker("Rented from");
+    private final DatePicker modifyEndDate = new DatePicker("Rented to");
 
     private UserDto loggedUserDto;
     private Long rentalId;
@@ -39,12 +35,8 @@ public class RentalsView extends VerticalLayout {
     @Autowired
     public RentalsView(RentalClient rentalClient) {
         this.rentalClient = rentalClient;
-
-
         setColumns();
-
         rentalGrid.addComponentColumn(this::createCloseRentalButton);
-
         add(rentalGrid);
     }
 
@@ -62,14 +54,8 @@ public class RentalsView extends VerticalLayout {
 
     private Button createCloseRentalButton(RentalDto rentalDto) {
         Dialog confirmCloseRentalDialog = createCloseRentalDialog(rentalDto);
-
         Button closeRentalButton = new Button("Close", event -> confirmCloseRentalDialog.open());
-
-        if (loggedUserDto == null) {
-            closeRentalButton.setEnabled(false);
-        } else {
-            closeRentalButton.setEnabled(true);
-        }
+        closeRentalButton.setEnabled(loggedUserDto != null);
         return closeRentalButton;
     }
 
@@ -95,7 +81,6 @@ public class RentalsView extends VerticalLayout {
     private Button createCancelConfirmationButton(Dialog dialog) {
         return new Button("Cancel", event -> dialog.close());
     }
-
 
     private void closeRental(Long rentalId) {
         rentalClient.deleteRental(rentalId);

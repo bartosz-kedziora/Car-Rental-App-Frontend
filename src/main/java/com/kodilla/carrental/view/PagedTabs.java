@@ -13,7 +13,6 @@ import com.vaadin.flow.component.tabs.Tab;
 import com.vaadin.flow.component.tabs.Tabs;
 import com.vaadin.flow.function.SerializableConsumer;
 import com.vaadin.flow.function.SerializableSupplier;
-
 import java.util.HashMap;
 import java.util.Map;
 
@@ -109,7 +108,6 @@ public class PagedTabs extends Composite<VerticalLayout> implements HasSize {
             tabCloseListener.accept(tab);
         }
     }
-
     public void setTabCloseListener(SerializableConsumer<Tab> listener) {
         this.tabCloseListener = listener;
     }

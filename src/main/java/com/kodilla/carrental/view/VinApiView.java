@@ -12,7 +12,6 @@ import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.data.binder.Binder;
 import com.vaadin.flow.spring.annotation.UIScope;
 import org.springframework.stereotype.Component;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,30 +22,25 @@ public class VinApiView extends VerticalLayout {
     private final Grid<VinBodyDto> grid = new Grid<>();
     private final VinApiClient vinApiClient;
 
-    private Dialog dialog = new Dialog();
-    private VinBodyDto vinResultDto = new VinBodyDto();
+    private final Dialog dialog = new Dialog();
+    private final VinBodyDto vinResultDto = new VinBodyDto();
 
-    private VinDto vinDto = new VinDto();
-    private Binder<VinDto> binder = new Binder<>();
-    private TextField vinField = new TextField("Enter VIN below:");
+    private final VinDto vinDto = new VinDto();
+    private final Binder<VinDto> binder = new Binder<>();
+    private final TextField vinField = new TextField("Enter VIN below:");
 
     public VinApiView(VinApiClient vinApiClient) {
         this.vinApiClient = vinApiClient;
 
         bindFields();
-
         VerticalLayout dialogLayout = new VerticalLayout();
         Button confirmDecodeButton = createConfirmDecodeButton();
         dialogLayout.add(vinField, confirmDecodeButton);
-
         dialog.isCloseOnOutsideClick();
         dialog.add(dialogLayout);
-
         setColumns();
-
         Button decodeButton = createDecodeButton();
         add(decodeButton, grid, dialog);
-
     }
 
     private Button createConfirmDecodeButton() {
