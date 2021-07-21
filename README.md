@@ -1,6 +1,6 @@
-"# Car-Rental-App-Frontend
+# Car-Rental-App-Frontend
 
-Car Rental - Web application (backend)
+Car Rental - Web application (frontend)
 
 Kodilla course - final project. WEB application of car rental service.
 
