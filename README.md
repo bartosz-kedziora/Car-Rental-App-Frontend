@@ -21,7 +21,7 @@ Technologies:
 Features:
 
 - 20 REST endpoints
-- Two external API's:(HereApi, VinDecoder)
+- Two external API's: (HereApi, VinDecoder)
 - Email sender scheduler
 - Test coverage > 65%
 - Design patterns (Strategy, Facade)
